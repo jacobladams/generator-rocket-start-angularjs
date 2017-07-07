@@ -1,0 +1,25 @@
+tfignore
+gitignore
+
+libraries
+
+dev libs
+	toastr
+	kendo?
+	bootswatch
+
+
+ability to load common libs from cdn
+
+gulp
+x	typescript
+x	sass
+x	images
+	fonts copy
+	icon font?
+	angular template cache
+	sprite images
+	browsersync
+
+yeoman generator
+web.config
