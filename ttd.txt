@@ -3,11 +3,14 @@ gitignore
 
 libraries
 
-dev libs
-	toastr
-	kendo?
-	bootswatch
+use lates jquery package versions and tsconfig lib setting
+update to latest node sass
 
+add	bootswatch?
+
+angular
+	change bootstraping order?
+	have app component have shell and routing in it?
 
 ability to load common libs from cdn
 
@@ -15,11 +18,18 @@ gulp
 x	typescript
 x	sass
 x	images
-	fonts copy
+x	fonts copy
 	icon font?
 	angular template cache
 	sprite images
 	browsersync
 
-yeoman generator
-web.config
+
+add vs files
+	web.config
+	tfignore
+	project file
+	assembly info
+	link gulp save to task runner
+	link watch to startup
+	link browsersync to iis express

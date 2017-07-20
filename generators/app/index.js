@@ -3,13 +3,13 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const uuidv4 = require('uuid/v4');
-// const _ = require('lodash'),
+const _ = require('lodash');
 
 
 
 module.exports = class extends Generator {
-	constructor() {
-		super(arguments);
+	constructor(args, opts) {
+		super(args, opts);
 		this.argument('appname', { type: String, required: true });
         //this.appname = _.kebabCase(this.appname);
 
@@ -23,7 +23,7 @@ module.exports = class extends Generator {
   prompting() {
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the incredible ' + chalk.red('generator-rocket-start-angularjs') + ' generator!'
+      'Welcome to the incredible ' + chalk.red('Rocket Start AngularJS') + ' generator!'
     ));
 
     // const prompts = [{
@@ -77,7 +77,8 @@ module.exports = class extends Generator {
 	// }
 
 	// const projectGuid = createGuid();
-	const vsProjectGuid = uuidv4();
+	  const vsProjectGuid = uuidv4();
+	  const currentYear = new Date().getFullYear;
 
 
 	console.log('template path: '+ this.templatePath()+ '/**')
@@ -90,7 +91,9 @@ module.exports = class extends Generator {
 			author: this.props.author,
 			angularModuleName: this.props.angularModuleName,
 			angularAppComponentName: this.props.angularAppComponentName,
-			angularAppComponentTag: _.kebabCase(this.props.angularAppComponentName)
+			angularAppComponentTag: _.kebabCase(this.props.angularAppComponentName),
+			vsProjectGuid: vsProjectGuid,
+			currentYear: currentYear
 		}
 
 		// 	this.destinationPath(),
