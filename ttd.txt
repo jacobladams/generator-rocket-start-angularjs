@@ -4,6 +4,9 @@ gitignore
 libraries
 
 use lates jquery package versions and tsconfig lib setting
+add npmignore file
+add options to include/exclude vs files
+rename vs project name
 update to latest node sass
 
 add	bootswatch?

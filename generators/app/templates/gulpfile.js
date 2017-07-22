@@ -68,6 +68,10 @@ gulp.task('build-shared-scripts', gulp.series('clean-shared-scripts', function (
         .pipe($.sourcemaps.init({loadMaps: true})) // This means sourcemaps will be generated 
         .pipe($.concat(config.sharedScripts.buildFileName))
         .pipe($.uglify()) // You can use other plugins that also support gulp-sourcemaps 
+        .pipe($.sourcemaps.mapSources(function(sourcePath, file) {
+        // source paths are prefixed with '../../' 
+            return '../../' + sourcePath;
+        }))
         .pipe($.sourcemaps.write('./')) // Now the sourcemaps are added to the .js file 
         .pipe(gulp.dest(config.sharedScripts.build));
 }));
@@ -85,7 +89,7 @@ gulp.task('build-scripts', gulp.series('clean-scripts', function () {
 
     var templateCache = gulp.src(config.angularTemplates.src)
         //.pipe($.plumber())
-        //.pipe($.sourcemaps.init({ loadMaps: true })) // This means sourcemaps will be generated     
+        .pipe($.sourcemaps.init({ loadMaps: true })) // This means sourcemaps will be generated     
         .pipe($.angularTemplatecache(config.angularTemplates.options));
     
 
@@ -94,7 +98,7 @@ gulp.task('build-scripts', gulp.series('clean-scripts', function () {
 
     var typeScript = merge(tsProject.src())
         //.pipe($.plumber())
-        //.pipe($.sourcemaps.init({ loadMaps: true })) // This means sourcemaps will be generated 
+        .pipe($.sourcemaps.init({ loadMaps: true })) // This means sourcemaps will be generated 
         .pipe(tsProject()).js;
     
 
@@ -104,6 +108,10 @@ gulp.task('build-scripts', gulp.series('clean-scripts', function () {
     //return typeScript
         .pipe($.concat(config.scripts.buildFileName))    
         .pipe($.uglify()) // You can use other plugins that also support gulp-sourcemaps 
+       .pipe($.sourcemaps.mapSources(function(sourcePath, file) {
+        // source paths are prefixed with '../../' 
+            return '../../' + sourcePath;
+        }))
         .pipe($.sourcemaps.write('./')) // Now the sourcemaps are added to the .js file 
         .pipe(gulp.dest(config.scripts.build));
 }));
@@ -119,6 +127,10 @@ gulp.task('build-shared-styles', function () {
         .pipe($.sass())
         .pipe($.concat(config.styles.sharedFileName))
         .pipe($.csso()) // You can use other plugins that also support gulp-sourcemaps 
+        .pipe($.sourcemaps.mapSources(function(sourcePath, file) {
+        // source paths are prefixed with '../../' 
+            return '../../' + sourcePath;
+        }))
         .pipe($.sourcemaps.write('./')) // Now the sourcemaps are added to the .js file 
         .pipe(gulp.dest(config.styles.build));
 });
@@ -134,6 +146,10 @@ gulp.task('build-styles', gulp.series(['clean-styles', gulp.parallel('build-shar
         .pipe($.sass())
         .pipe($.concat(config.styles.buildFileName))
         .pipe($.csso()) // You can use other plugins that also support gulp-sourcemaps 
+        .pipe($.sourcemaps.mapSources(function(sourcePath, file) {
+        // source paths are prefixed with '../../' 
+            return '../../' + sourcePath;
+        }))
         .pipe($.sourcemaps.write('./')) // Now the sourcemaps are added to the .js file 
         .pipe(gulp.dest(config.styles.build));
 })]));

@@ -1,0 +1,8 @@
+node_modules
+coverage
+yarn.lock
+ttd.txt
+.editorconfig
+.gitignore
+.travis.yml
+README
