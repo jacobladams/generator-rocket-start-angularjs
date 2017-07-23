@@ -83,14 +83,15 @@ module.exports = class extends Generator {
 
 		// const projectGuid = createGuid();
 		const vsProjectGuid = uuidv4();
-		const currentYear = new Date().getFullYear;
+		const currentYear = new Date().getFullYear();
 
 
 		var templateGlob = [
 			`${this.templatePath()}/**`,
 			`!${this.templatePath()}/Properties/`,
 			`!${this.templatePath()}/_Project.csproj`,
-			`!${this.templatePath()}/Web.config`
+			`!${this.templatePath()}/Web.config`,
+			`!${this.templatePath()}/app/app.component.*`
 		];
 
 		var data = {
@@ -108,6 +109,10 @@ module.exports = class extends Generator {
 		//const rootFolder = this.destinationPath();
 
 		this.fs.copyTpl(templateGlob, rootFolder, data);
+
+		this.fs.copyTpl(`${this.templatePath()}/app/app.component.html`, `${rootFolder}/app/${data.angularAppComponentName}//${data.angularAppComponentName}.component.html`, data);
+		this.fs.copyTpl(`${this.templatePath()}/app/app.component.scss`, `${rootFolder}/app/${data.angularAppComponentName}//${data.angularAppComponentName}.component.scss`, data);
+		this.fs.copyTpl(`${this.templatePath()}/app/app.component.ts`, `${rootFolder}/app/${data.angularAppComponentName}//${data.angularAppComponentName}.component.ts`, data);
 
 		if (this.props.includeDotNetFiles) {
 			this.fs.copyTpl(`${this.templatePath()}/_Project.csproj`, `${rootFolder}/${this.options.appname}.csproj`, data);
