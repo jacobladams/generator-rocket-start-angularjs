@@ -1,6 +1,6 @@
 {
   "name": "generator-rocket-start-angularjs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Generator for creating a web application using AngularJS, TypeScript, SASS, and Gulp",
   "homepage": "https://github.com/jacobladams/generator-rocket-start-angularjs",
   "author": {
